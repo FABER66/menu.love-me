@@ -46,6 +46,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--sfondo);color:var(--nero)
   position:sticky;top:0;z-index:50;scrollbar-width:none;
   box-shadow:0 2px 10px rgba(0,0,0,.07);}
 .cat-nav::-webkit-scrollbar{display:none;}
+body.embed .cat-nav{display:none;}
 .cn-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--bordo);
   background:var(--crema);font-family:'DM Sans',sans-serif;font-size:.78rem;
   font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--grigio);}
@@ -544,6 +545,7 @@ buildCatNav(); buildMenu(); buildTavoli();
 // Override del titolo locale via query string ?venue=...
 (function () {
   var params = new URLSearchParams(location.search);
+  if (params.get('embed') === '1') document.body.classList.add('embed');
   var venue = (params.get('venue') || '').toLowerCase();
   var venues = {
     'la-rinascente': 'La Rinascente · Bracciano',
