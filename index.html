@@ -540,6 +540,21 @@ function showToast(m){
 }
 
 buildCatNav(); buildMenu(); buildTavoli();
+
+// Override del titolo locale via query string ?venue=...
+(function () {
+  var params = new URLSearchParams(location.search);
+  var venue = (params.get('venue') || '').toLowerCase();
+  var venues = {
+    'la-rinascente': 'La Rinascente · Bracciano',
+    'del-corso': 'Café del Corso · Bracciano'
+  };
+  if (venues[venue]) {
+    document.title = 'Love Me · ' + venues[venue];
+    var place = document.querySelector('.hero-place');
+    if (place) place.textContent = venues[venue];
+  }
+})();
 </script>
 </body>
 </html>
